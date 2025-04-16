@@ -1,0 +1,5 @@
+#!/bin/sh
+
+npx eslint . --fix
+git add .
+npx eslint .
