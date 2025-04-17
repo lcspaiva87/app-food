@@ -1,6 +1,24 @@
 {
   "extends": [
     "@rocketseat/eslint-config/next"
+  ],
+  "rules": {
+      "prettier/prettier": "error",
+      "camelcase": "off",
+      "no-console": "warn",
+      "no-param-reassign": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "no-void": "off",
+     "@typescript-eslint/ban-ts-comment": [
+      "warn",
+      {
+        "ts-expect-error":  true ,
+        "ts-ignore":  true ,
+        "ts-nocheck":  true ,
+        "ts-check":  true
+      }
+    ]
 
-  ]
+
+    }
 }
