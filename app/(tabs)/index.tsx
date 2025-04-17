@@ -1,20 +1,17 @@
-import { Image, StyleSheet, Platform } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
+import SplashScreenSvg from '@/assets/images/splash-screen/splash-screen.svg'
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
-        <Image
-          alt="React Logo"
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
+        <SplashScreenSvg width={300} height={300} style={styles.reactLogo} />
       }
     >
       <ThemedView style={styles.titleContainer}>
@@ -22,6 +19,7 @@ export default function HomeScreen() {
           Welcome!
         </ThemedText>
         <HelloWave />
+        <SplashScreenSvg width={300} height={300} />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
