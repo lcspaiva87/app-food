@@ -6,13 +6,12 @@ import {
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
-import { StatusBar } from 'expo-status-bar'
 import { Fragment, useEffect, useState } from 'react'
 import 'react-native-reanimated'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import SplashScreenPage from './SplashScreen'
+import LoginScreen from './auth/page'
 import '../styles/global.css'
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
@@ -21,6 +20,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
+  const [isAuthenticated] = useState(false)
 
   useEffect(() => {
     if (error) {
@@ -31,11 +31,9 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync()
-      // Hide splash screen after fonts are loaded
       const timer = setTimeout(() => {
         setLoading(false)
       }, 2000)
-
       return () => clearTimeout(timer)
     }
   }, [loaded])
@@ -48,13 +46,14 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       {loading ? (
         <SplashScreenPage />
+      ) : !isAuthenticated ? (
+        <LoginScreen />
       ) : (
         <Fragment>
           <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="auth" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
-          <StatusBar style="auto" />
         </Fragment>
       )}
     </ThemeProvider>

@@ -20,6 +20,14 @@ module.exports = {
         'purple-dark': '#5E60CE',
         purple: '#8284FA',
         danger: '#E25858',
+        background: 'rgba(219, 219, 219, 0.2)',
+        button: {
+          background: '#8359E3',
+          text: '#FFFFFF',
+        },
+      },
+      borderRadius: {
+        '4xl': '1.875rem',
       },
     },
   },
