@@ -1,14 +1,33 @@
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
-  Dimensions,
   SafeAreaView,
   StatusBar,
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native'
-
+import { styles } from './styles'
+import { useState } from 'react'
 export default function TableScreen() {
+  const [selectedTable, setSelectedTable] = useState<string | null>(null)
+  const [search, setSearch] = useState<string>('')
+  const tableNumbers = Array.from({ length: 100 }, (_, i) => {
+    return (i + 1).toString().padStart(2, '0')
+  })
+
+  const handleTableClick = (number: string) => {
+    setSelectedTable(selectedTable === number ? null : number)
+  }
+
+  const handleNumberInput = (text: string) => {
+    const numericText = text.replace(/[^0-9]/g, '')
+    setSearch(numericText)
+  }
+
+  const filteredTableNumbers = tableNumbers.filter((number) =>
+    number.includes(search),
+  )
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -19,91 +38,30 @@ export default function TableScreen() {
           placeholder="Digite n° da mesa/comanda"
           placeholderTextColor="rgba(0, 0, 0, 0.36)"
           textAlign="center"
+          value={search}
+          onChangeText={handleNumberInput}
+          keyboardType="decimal-pad"
         />
+        <ScrollView>
+          <View style={styles.grid}>
+            {filteredTableNumbers.map((number) => (
+              <TouchableOpacity
+                key={number}
+                style={[
+                  styles.tableCard,
+                  {
+                    backgroundColor:
+                      selectedTable === number ? '#ef4444' : '#2cca74',
+                  },
+                ]}
+                onPress={() => handleTableClick(number)}
+              >
+                <Text style={styles.tableNumber}>{number}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   )
 }
-
-const { width } = Dimensions.get('window')
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f2f6ff',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 64,
-    paddingBottom: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '400',
-    textAlign: 'center',
-    marginBottom: 20,
-    letterSpacing: 0.37,
-  },
-  input: {
-    width: '100%',
-    height: 42,
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    marginBottom: 20,
-    fontSize: 17,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  tableCard: {
-    width: (width - 56) / 4,
-    height: 57,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  tableNumber: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: '300',
-    textAlign: 'center',
-    letterSpacing: -0.3,
-  },
-  createAccountButton: {
-    width: '100%',
-    height: 42,
-    backgroundColor: 'rgba(172, 172, 172, 1)',
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 32,
-    shadowColor: '#452a7c',
-    shadowOffset: {
-      width: 0,
-      height: 30,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 30,
-    elevation: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-  },
-  homeIndicator: {
-    width: 134,
-    height: 5,
-    backgroundColor: 'black',
-    borderRadius: 100,
-    marginTop: 20,
-    alignSelf: 'center',
-  },
-})
