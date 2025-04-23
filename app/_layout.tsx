@@ -1,15 +1,10 @@
-import {
-  DefaultTheme,
-  DarkTheme,
-  ThemeProvider,
-} from '@react-navigation/native'
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect, useState } from 'react'
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import { useColorScheme } from '@/hooks/useColorScheme'
 import theme from '@/themes'
 import SplashScreenPage from './SplashScreen'
 import LoginScreen from './auth/page'
@@ -19,7 +14,6 @@ import { Routes } from './routes/app.routes'
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme()
   const [loading, setLoading] = useState(true)
   const [isAuthenticated] = useState(true)
 
@@ -28,29 +22,17 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
-  const customLightTheme = {
+  // Cria um tema personalizado baseado no tema padrão
+  const customTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
       primary: theme.COLORS.GREEN_700,
-      background: theme.COLORS.WHITE,
+      background: theme.COLORS.WHITE_DARKER,
       card: theme.COLORS.GRAY_100,
       text: theme.COLORS.GRAY_700,
       border: theme.COLORS.GRAY_300,
       notification: theme.COLORS.GREEN_700,
-    },
-  }
-
-  const customDarkTheme = {
-    ...DarkTheme,
-    colors: {
-      ...DarkTheme.colors,
-      primary: theme.COLORS.GREEN_500,
-      background: theme.COLORS.GRAY_700,
-      card: theme.COLORS.GRAY_600,
-      text: theme.COLORS.GRAY_100,
-      border: theme.COLORS.GRAY_500,
-      notification: theme.COLORS.GREEN_500,
     },
   }
 
@@ -90,9 +72,7 @@ export default function RootLayout() {
 
   // Se estiver autenticado, mostra o sistema de navegação usando o Routes
   return (
-    <ThemeProvider
-      value={colorScheme === 'dark' ? customDarkTheme : customLightTheme}
-    >
+    <ThemeProvider value={customTheme}>
       <Routes />
     </ThemeProvider>
   )

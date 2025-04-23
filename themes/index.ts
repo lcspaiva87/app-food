@@ -1,5 +1,7 @@
 const COLORS = {
   WHITE: '#FFFFFF',
+  WHITE_OFF: '#F7F7F7', // Branco um pouco mais escuro (off-white)
+  WHITE_DARKER: '#F0F0F0', // Branco ainda mais escuro
   BLACK: '#000000',
 
   GREEN_700: '#00875F',

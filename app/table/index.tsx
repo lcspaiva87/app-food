@@ -1,8 +1,8 @@
-import { Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 export default function TableScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <Text className="text-3xl font-bold">Mesas</Text>
       <TextInput
         placeholder="Digite n°  da mesa/comanda"
@@ -11,3 +11,10 @@ export default function TableScreen() {
     </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16, // Padding nas laterais
+    paddingTop: 16, // Padding no topo
+  },
+})
