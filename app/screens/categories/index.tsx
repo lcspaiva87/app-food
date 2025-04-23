@@ -10,6 +10,12 @@ import {
   ImageBackground,
 } from 'react-native'
 import { styles } from './styles'
+import { ArrowLeft } from 'lucide-react-native'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import type { ParamListBase } from '@react-navigation/native'
+
+type NavigationProp = NativeStackNavigationProp<ParamListBase>
 
 const categories = [
   {
@@ -44,9 +50,15 @@ const categories = [
   },
 ]
 export const Categories = () => {
+  const navigation = useNavigation<NavigationProp>()
+
   const handleCategoryClick = (categoryId: number) => {
     console.log(`Category clicked: ${categoryId}`)
     // Add navigation logic here
+  }
+
+  const handleBackPress = () => {
+    navigation.goBack()
   }
 
   return (
@@ -56,6 +68,10 @@ export const Categories = () => {
         source={require('../../../assets/images/bg1.png')}
         style={styles.backgroundImage}
       >
+        <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
+          <ArrowLeft size={16} color="#000" />
+        </TouchableOpacity>
+
         <View style={styles.content}>
           <Text style={styles.title}>Categorias</Text>
           <TextInput
