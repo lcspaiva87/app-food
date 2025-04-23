@@ -1,0 +1,111 @@
+import { StyleSheet } from 'react-native'
+import { windowWidth } from '../../../lib/utils'
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F2F6FF',
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 64,
+    paddingBottom: 20,
+  },
+
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 32,
+    width: 32,
+    height: 32,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  input: {
+    width: '100%',
+    height: 42,
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    borderRadius: 30,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    fontSize: 17,
+  },
+  backIcon: {
+    width: 16,
+    height: 16,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginBottom: 20,
+    letterSpacing: 0.37,
+  },
+  searchContainer: {
+    position: 'absolute',
+    top: 136,
+    marginHorizontal: 32,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    zIndex: 10,
+  },
+  searchIcon: {
+    width: 16,
+    height: 16,
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    fontFamily: 'Work Sans',
+    fontSize: 14,
+    color: '#B0B0B0',
+    letterSpacing: -0.26,
+  },
+  categoriesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 6,
+  },
+  categoryButton: {
+    width: (windowWidth - 96) / 2,
+    height: 132,
+    borderRadius: 28,
+    overflow: 'hidden',
+  },
+  categoryImage: {
+    width: '100%',
+    height: '100%',
+  },
+  categoryLabel: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.56)',
+    paddingVertical: 6,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  categoryText: {
+    fontFamily: 'Work Sans',
+    fontSize: 10,
+    fontWeight: '700',
+    color: 'white',
+    letterSpacing: -0.2,
+  },
+})

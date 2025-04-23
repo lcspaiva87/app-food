@@ -1,6 +1,3 @@
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { Dimensions } from 'react-native'
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+export const windowWidth = Dimensions.get('window').width
