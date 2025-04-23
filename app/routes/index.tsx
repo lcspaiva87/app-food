@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import TableScreen from '../table'
+import { Categories } from '../screens/categories'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export function AppRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="table" component={TableScreen} />
+      <Screen name="categories" component={Categories} />
     </Navigator>
   )
 }
