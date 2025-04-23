@@ -54,7 +54,6 @@ export const Categories = () => {
 
   const handleCategoryClick = (categoryId: number) => {
     console.log(`Category clicked: ${categoryId}`)
-    // Add navigation logic here
   }
 
   const handleBackPress = () => {
@@ -80,7 +79,6 @@ export const Categories = () => {
             placeholderTextColor="#B0B0B0"
           />
 
-          {/* Categories Grid */}
           <View style={styles.categoriesGrid}>
             {categories.map((category) => (
               <TouchableOpacity

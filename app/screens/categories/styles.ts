@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { windowWidth } from '../../../lib/utils'
 
 export const styles = StyleSheet.create({
@@ -107,43 +107,5 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'white',
     letterSpacing: -0.2,
-  },
-  createAccountButton: {
-    height: 42,
-    backgroundColor: '#8359E3',
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#452A7C',
-    shadowOffset: { width: 0, height: 30 },
-    shadowOpacity: 0.15,
-    shadowRadius: 30,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#452A7C',
-        shadowOffset: { width: 0, height: 30 },
-        shadowOpacity: 0.15,
-        shadowRadius: 30,
-      },
-      android: {
-        elevation: 10,
-      },
-    }),
-  },
-  createAccountText: {
-    fontFamily: 'SF Pro Text',
-    fontSize: 17,
-    fontWeight: '600',
-    color: 'white',
-    letterSpacing: -0.3,
-  },
-  homeIndicator: {
-    position: 'absolute',
-    bottom: 41,
-    alignSelf: 'center',
-    width: 134,
-    height: 5,
-    backgroundColor: 'black',
-    borderRadius: 100,
   },
 })
