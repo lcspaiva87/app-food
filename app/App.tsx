@@ -1,40 +1,21 @@
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect, useState } from 'react'
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import theme from '@/themes'
 import SplashScreenPage from './SplashScreen'
-import LoginScreen from './auth/page'
 import { Routes } from './routes/app.routes'
 
-// Impede o SplashScreen de esconder automaticamente
 SplashScreen.preventAutoHideAsync()
 
-export default function RootLayout() {
+export default function App() {
   const [loading, setLoading] = useState(true)
-  const [isAuthenticated] = useState(true)
 
   // Carrega as fontes
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
-
-  // Cria um tema personalizado baseado no tema padrão
-  const customTheme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: theme.COLORS.GREEN_700,
-      background: theme.COLORS.WHITE_DARKER,
-      card: theme.COLORS.GRAY_100,
-      text: theme.COLORS.GRAY_700,
-      border: theme.COLORS.GRAY_300,
-      notification: theme.COLORS.GREEN_700,
-    },
-  }
 
   // Lida com erros no carregamento das fontes
   useEffect(() => {
@@ -65,15 +46,6 @@ export default function RootLayout() {
     return <SplashScreenPage />
   }
 
-  // Se não estiver autenticado, mostra a tela de login
-  if (!isAuthenticated) {
-    return <LoginScreen />
-  }
-
-  // Se estiver autenticado, mostra o sistema de navegação usando o Routes
-  return (
-    <ThemeProvider value={customTheme}>
-      <Routes />
-    </ThemeProvider>
-  )
+  // Para teste, use diretamente o Routes para mostrar a aplicação principal
+  return <Routes />
 }
