@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
 } from 'react-native'
 import { styles } from './styles'
 import { useState } from 'react'
@@ -31,37 +32,42 @@ export default function TableScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.content}>
-        <Text style={styles.title}>Mesas</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite n° da mesa/comanda"
-          placeholderTextColor="rgba(0, 0, 0, 0.36)"
-          textAlign="center"
-          value={search}
-          onChangeText={handleNumberInput}
-          keyboardType="decimal-pad"
-        />
-        <ScrollView>
-          <View style={styles.grid}>
-            {filteredTableNumbers.map((number) => (
-              <TouchableOpacity
-                key={number}
-                style={[
-                  styles.tableCard,
-                  {
-                    backgroundColor:
-                      selectedTable === number ? '#ef4444' : '#2cca74',
-                  },
-                ]}
-                onPress={() => handleTableClick(number)}
-              >
-                <Text style={styles.tableNumber}>{number}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </ScrollView>
-      </View>
+      <ImageBackground
+        source={require('../../assets/images/bg1.png')}
+        style={styles.backgroundImage}
+      >
+        <View style={styles.content}>
+          <Text style={styles.title}>Mesas</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite n° da mesa/comanda"
+            placeholderTextColor="rgba(0, 0, 0, 0.36)"
+            textAlign="center"
+            value={search}
+            onChangeText={handleNumberInput}
+            keyboardType="decimal-pad"
+          />
+          <ScrollView>
+            <View style={styles.grid}>
+              {filteredTableNumbers.map((number) => (
+                <TouchableOpacity
+                  key={number}
+                  style={[
+                    styles.tableCard,
+                    {
+                      backgroundColor:
+                        selectedTable === number ? '#ef4444' : '#2cca74',
+                    },
+                  ]}
+                  onPress={() => handleTableClick(number)}
+                >
+                  <Text style={styles.tableNumber}>{number}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   )
 }
