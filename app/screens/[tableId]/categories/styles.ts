@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { windowWidth } from '../../../lib/utils'
+import { windowWidth } from '../../../../lib/utils'
 
 export const styles = StyleSheet.create({
   container: {
@@ -29,6 +29,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 10,
   },
+  tableContainer: {
+    position: 'absolute',
+    top: 40,
+    right: 32,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    zIndex: 10,
+  },
   input: {
     width: '100%',
     height: 42,
@@ -48,6 +58,18 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     letterSpacing: 0.37,
+  },
+  tableText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#000',
+  },
+  subtitle: {
+    fontSize: 16,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#333',
   },
   searchContainer: {
     position: 'absolute',

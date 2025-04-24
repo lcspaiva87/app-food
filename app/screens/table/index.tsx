@@ -10,16 +10,26 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import type { ParamListBase } from '@react-navigation/native'
+
+type NavigationProp = NativeStackNavigationProp<ParamListBase>
 
 export const TableScreen = () => {
   const [selectedTable, setSelectedTable] = useState<string | null>(null)
   const [search, setSearch] = useState<string>('')
+  const navigation = useNavigation<NavigationProp>()
+
   const tableNumbers = Array.from({ length: 100 }, (_, i) => {
     return (i + 1).toString().padStart(2, '0')
   })
 
   const handleTableClick = (number: string) => {
-    setSelectedTable(selectedTable === number ? null : number)
+    setSelectedTable(number)
+
+    // Navigate to categories screen with table number as parameter
+    navigation.navigate('categories', { tableId: number })
   }
 
   const handleNumberInput = (text: string) => {
