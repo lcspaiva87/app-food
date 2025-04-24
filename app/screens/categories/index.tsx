@@ -49,7 +49,7 @@ const categories = [
     image: require('../../../assets/categories/rectangle-162.png'),
   },
 ]
-export const Categories = () => {
+export const CategoriesScreen = () => {
   const navigation = useNavigation<NavigationProp>()
 
   const handleCategoryClick = (categoryId: number) => {

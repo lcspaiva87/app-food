@@ -10,7 +10,8 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 import { useState } from 'react'
-export default function TableScreen() {
+
+export const TableScreen = () => {
   const [selectedTable, setSelectedTable] = useState<string | null>(null)
   const [search, setSearch] = useState<string>('')
   const tableNumbers = Array.from({ length: 100 }, (_, i) => {
@@ -33,7 +34,7 @@ export default function TableScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <ImageBackground
-        source={require('../../assets/images/bg1.png')}
+        source={require('../../../assets/images/bg1.png')}
         style={styles.backgroundImage}
       >
         <View style={styles.content}>
