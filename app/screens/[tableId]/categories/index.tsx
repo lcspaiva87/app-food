@@ -57,7 +57,16 @@ export const CategoriesScreen = () => {
   const { tableId } = route.params
 
   const handleCategoryClick = (categoryId: number) => {
-    console.log(`Category ${categoryId} selected for table ${tableId}`)
+    const selectedCategory = categories.find(
+      (category) => category.id === categoryId,
+    )
+    if (selectedCategory) {
+      navigation.navigate('categorySlug', {
+        categoryId,
+        tableId,
+        categoryImage: Image.resolveAssetSource(selectedCategory.image).uri,
+      })
+    }
   }
 
   const handleBackPress = () => {
@@ -74,6 +83,7 @@ export const CategoriesScreen = () => {
         <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
           <ArrowLeft size={16} color="#000" />
         </TouchableOpacity>
+
         <View style={styles.tableContainer}>
           <Text style={styles.tableText}>Mesa: {tableId}</Text>
         </View>
