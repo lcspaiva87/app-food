@@ -10,16 +10,13 @@ import {
 } from 'react-native'
 import { styles } from './styles'
 import { useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import type { ParamListBase } from '@react-navigation/native'
 
-type NavigationProp = NativeStackNavigationProp<ParamListBase>
+import { useRouter } from 'expo-router'
 
-export const TableScreen = () => {
+export default function TableScreen() {
   const [selectedTable, setSelectedTable] = useState<string | null>(null)
   const [search, setSearch] = useState<string>('')
-  const navigation = useNavigation<NavigationProp>()
+  const router = useRouter()
 
   const tableNumbers = Array.from({ length: 100 }, (_, i) => {
     return (i + 1).toString().padStart(2, '0')
@@ -27,9 +24,7 @@ export const TableScreen = () => {
 
   const handleTableClick = (number: string) => {
     setSelectedTable(number)
-
-    // Navigate to categories screen with table number as parameter
-    navigation.navigate('categories', { tableId: number })
+    router.push(`/table/${number}`)
   }
 
   const handleNumberInput = (text: string) => {
@@ -44,7 +39,7 @@ export const TableScreen = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <ImageBackground
-        source={require('../../../assets/images/bg1.png')}
+        source={require('../../assets/images/bg1.png')}
         style={styles.backgroundImage}
       >
         <View style={styles.content}>

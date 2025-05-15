@@ -1,3 +1,4 @@
+import { Slot } from 'expo-router'
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -7,22 +8,16 @@ import '../styles/global.css'
 
 import theme from '@/themes'
 import SplashScreenPage from './SplashScreen'
-import LoginScreen from './auth/page'
-import { Routes } from './routes/app.routes'
 
-// Impede o SplashScreen de esconder automaticamente
 SplashScreen.preventAutoHideAsync()
 
-export default function RootLayout() {
+export default function Layout() {
   const [loading, setLoading] = useState(true)
-  const [isAuthenticated] = useState(true)
 
-  // Carrega as fontes
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   })
 
-  // Cria um tema personalizado baseado no tema padrão
   const customTheme = {
     ...DefaultTheme,
     colors: {
@@ -36,15 +31,10 @@ export default function RootLayout() {
     },
   }
 
-  // Lida com erros no carregamento das fontes
   useEffect(() => {
-    if (error) {
-      console.error('Erro ao carregar fontes:', error)
-      throw error
-    }
+    if (error) throw error
   }, [error])
 
-  // Esconde o SplashScreen depois que as fontes são carregadas
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync()
@@ -55,25 +45,12 @@ export default function RootLayout() {
     }
   }, [loaded])
 
-  // Enquanto as fontes não são carregadas, não renderiza nada
-  if (!loaded) {
-    return null
-  }
+  if (!loaded) return null
+  if (loading) return <SplashScreenPage />
 
-  // Renderiza a tela de splash enquanto carrega
-  if (loading) {
-    return <SplashScreenPage />
-  }
-
-  // Se não estiver autenticado, mostra a tela de login
-  if (!isAuthenticated) {
-    return <LoginScreen />
-  }
-
-  // Se estiver autenticado, mostra o sistema de navegação usando o Routes
   return (
     <ThemeProvider value={customTheme}>
-      <Routes />
+      <Slot />
     </ThemeProvider>
   )
 }
