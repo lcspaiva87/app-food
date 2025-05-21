@@ -16,13 +16,14 @@ import InputField from '@/components/ui/InputField'
 import Button from '@/components/ui/Button'
 import Logo from '@/components/Logo'
 import SocialLogin from '@/components/SocialLogin'
-
+import { useRouter } from 'expo-router'
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
   const [errors, setErrors] = useState<{ email?: string; password?: string }>(
     {},
   )
@@ -54,11 +55,12 @@ export default function LoginScreen() {
   const handleLogin = () => {
     if (validateForm()) {
       setIsLoading(true)
+      router.replace('/table')
       // Simulate API call
-      setTimeout(() => {
-        setIsLoading(false)
-        console.log('Login successful!', { email, password, rememberMe })
-      }, 1500)
+      // setTimeout(() => {
+      //   setIsLoading(false)
+      //   console.log('Login successful!', { email, password, rememberMe })
+      // }, 1500)
     }
   }
 

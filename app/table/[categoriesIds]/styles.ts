@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { windowWidth } from '../../../../lib/utils'
+import { windowWidth } from '../../../lib/utils'
 
 export const styles = StyleSheet.create({
   container: {
