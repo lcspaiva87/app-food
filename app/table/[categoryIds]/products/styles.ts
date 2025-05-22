@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     top: 0,
   },
+
   header: {
     flexDirection: 'row',
     alignItems: 'center',

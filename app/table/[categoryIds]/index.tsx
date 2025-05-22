@@ -54,11 +54,15 @@ export const CategoriesScreen = () => {
     const selectedCategory = categories.find(
       (category) => category.id === categoryId,
     )
+    console.log('selectedCategory', categoryId)
     if (selectedCategory) {
-      navigation.navigate('categorySlug', {
-        categoryId,
-        tableId,
-        categoryImage: Image.resolveAssetSource(selectedCategory.image).uri,
+      router.push({
+        pathname: `/table/${categoryId}/products`,
+        params: {
+          categoryId,
+          tableId,
+          categoryImage: Image.resolveAssetSource(selectedCategory.image).uri,
+        },
       })
     }
   }

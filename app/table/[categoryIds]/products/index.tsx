@@ -83,7 +83,7 @@ const burgerItems: BurgerItem[] = [
   },
 ]
 
-export const CategorySlugScreen = () => {
+export const ProductsScreen = () => {
   const navigation = useNavigation<NavigationProp>()
   const route = useRoute<CategoryScreenRouteProp>()
   const { categoryId, categoryImage } = route.params
@@ -155,3 +155,5 @@ export const CategorySlugScreen = () => {
     </SafeAreaView>
   )
 }
+
+export default ProductsScreen

@@ -30,23 +30,23 @@ export default function LoginScreen() {
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {}
-    let isValid = true
+    const isValid = true
 
-    if (!email) {
-      newErrors.email = 'Email is required'
-      isValid = false
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid'
-      isValid = false
-    }
+    // if (!email) {
+    //   newErrors.email = 'Email is required'
+    //   isValid = false
+    // } else if (!/\S+@\S+\.\S+/.test(email)) {
+    //   newErrors.email = 'Email is invalid'
+    //   isValid = false
+    // }
 
-    if (!password) {
-      newErrors.password = 'Password is required'
-      isValid = false
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters'
-      isValid = false
-    }
+    // if (!password) {
+    //   newErrors.password = 'Password is required'
+    //   isValid = false
+    // } else if (password.length < 6) {
+    //   newErrors.password = 'Password must be at least 6 characters'
+    //   isValid = false
+    // }
 
     setErrors(newErrors)
     return isValid
